@@ -92,7 +92,7 @@ document.addEventListener("keydown", (e) => {
 
     // sound for laser
     const laserShoot = new Audio();
-    laserShoot.src = "/Sound/laserShoot.wav";
+    laserShoot.src = "./Sound/laserShoot.wav";
     laserShoot.play();
     gameContainer.append(laser);
     laserAttack.push(laser);
@@ -190,7 +190,7 @@ function collisionHandler(laserAttack, enemyArray, rocket) {
         // audio when a collision detect between laser and enemy
         fireEmoji(laser, enemy);
         const explosion = new Audio();
-        explosion.src = "/Sound/explosion.mp3";
+        explosion.src = "./Sound/explosion.mp3";
         explosion.play();
         laser.remove();
         enemy.remove();
