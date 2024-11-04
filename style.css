@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.game-container {
+  width: auto;
+  height: 100vh;
+  background: #2d374a;
+  background: -webkit-linear-gradient(
+    44deg,
+    #15181f 0%,
+    #0d1b3d 50%,
+    #000000 100%
+  );
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.progressTracker {
+  background-color: rgb(2, 2, 2);
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  align-items: center;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.enemy {
+  height: 40px;
+  width: 35px;
+
+  position: absolute;
+}
+
+.blue-enemy {
+  font-size: 35px;
+  position: absolute;
+}
+
+.btn {
+  height: 200px;
+  width: 400px;
+  position: absolute;
+  z-index: 1000000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: 8px solid black;
+  outline: 2px solid red;
+  color: #3f784c;
+  font-size: 80px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.guideLine {
+  height: 20vh;
+  /* padding: 40px; */
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  top: 250px;
+  left: 0px;
+  opacity: 30%;
+}
