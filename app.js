@@ -11,24 +11,27 @@ let resetBtn; // declaring reset button variable
 let nrOfLife = 3; // 3 life for a player
 
 function lifeUpdate() {
+  // function for life update
   if (nrOfLife > 0) {
-    nrOfLife--;
+    // check the condition
+    nrOfLife--; // update life
     life.textContent = `Life:-${nrOfLife}`;
   }
   if (nrOfLife <= 0 && player) {
+    // condition check if life is equal to 0
     player = false;
-    score.style.opacity = "0";
-
+    score.style.opacity = "0"; // dissapear the score bord
     resetBtn = document.createElement("button");
     resetBtn.textContent = "Try Again";
     resetBtn.className = "btn";
 
-    resetBtn.addEventListener("click", resetGame);
+    resetBtn.addEventListener("click", resetGame); // eventlistner while we click so reset function run
     gameContainer.append(resetBtn);
   }
 }
 
 function resetGame() {
+  // reset game function
   if (resetBtn) {
     resetBtn.remove();
     player = true;
@@ -42,10 +45,10 @@ function resetGame() {
   }
 }
 
-let yourScore = 0;
+let yourScore = 0; // score start with 0
 // record the score
 function scoreRecord() {
-  yourScore += 12;
+  yourScore += 12; // add +12 if a laser hit ones a enemy
   score.textContent = `Your score:${yourScore}`;
 } // score start form 0
 life.textContent = `Life:-${nrOfLife}`; // content for player life
@@ -54,7 +57,7 @@ score.textContent = `Your score:${yourScore}`; // content for player score
 
 // Define rocket and css for alling it
 const rocket = document.createElement("img");
-rocket.src = "/img/rocket.png";
+rocket.src = "./img/rocket.png";
 rocket.style.height = "50px";
 rocket.style.width = "50px"; // css for rocket
 rocket.style.position = "absolute";
@@ -75,7 +78,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-let laserAttack = [];
+let laserAttack = []; // array for storing laser which will append while we press space bar
 // Lasers section or bullet
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
@@ -116,7 +119,7 @@ let enemyArray = [];
 function generateEnemy() {
   const enemy = document.createElement("img"); // enemy png
   enemy.className = "enemy";
-  enemy.src = "/img/red.png";
+  enemy.src = "./img/red.png";
   enemy.style.top = "80px";
   // secound enemy or variant of enemy
   const blueEnemy = document.createElement("span");
@@ -163,7 +166,7 @@ function collisionHandler(laserAttack, enemyArray, rocket) {
 
       if (
         laserRect.right > enemyRect.left &&
-        laserRect.left < enemyRect.right &&
+        laserRect.left < enemyRect.right && // check if all  the condition meet
         laserRect.top < enemyRect.bottom &&
         laserRect.bottom > enemyRect.top
       ) {
@@ -171,6 +174,7 @@ function collisionHandler(laserAttack, enemyArray, rocket) {
         const fire = document.createElement("span");
 
         function fireEmoji(laser, enemy) {
+          // function foe fireEmoji
           fire.textContent = "💥";
           fire.style.fontSize = "50px";
 
@@ -180,10 +184,10 @@ function collisionHandler(laserAttack, enemyArray, rocket) {
 
           gameContainer.append(fire);
           setTimeout(() => {
-            fire.remove();
+            fire.remove(); // remove fire emoji after 2ms
           }, 200);
         }
-
+        // audio when a collision detect between laser and enemy
         fireEmoji(laser, enemy);
         const explosion = new Audio();
         explosion.src = "/Sound/explosion.mp3";
@@ -195,22 +199,22 @@ function collisionHandler(laserAttack, enemyArray, rocket) {
       } else if (
         enemyRect.right > rocketRect.left &&
         enemyRect.left < rocketRect.right &&
-        enemyRect.bottom > rocketRect.top &&
+        enemyRect.bottom > rocketRect.top && // check condition if the enemy hit rocket or player
         enemyRect.top < rocketRect.bottom
       ) {
-        enemy.remove();
-        lifeUpdate();
+        enemy.remove(); // remove enemy from the screen
+        lifeUpdate(); // update life when enemy hit the player or rocket
       }
     });
   });
 }
 
-setInterval(generateEnemy, 3000);
+setInterval(generateEnemy, 3000); // enemy generated after 3 sec
 
 setInterval(() => {
   collisionHandler(laserAttack, enemyArray, rocket); // Check for collisions every 50ms
 }, 50);
 
-progressTracker.append(life, score);
+progressTracker.append(life, score); // apend life and score at progressTracker div
 
-gameContainer.append(progressTracker, rocket);
+gameContainer.append(progressTracker, rocket); // append rocket and progress at gameContainer
