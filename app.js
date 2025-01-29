@@ -61,7 +61,7 @@ rocket.src = "./img/rocket.png";
 rocket.style.height = "50px";
 rocket.style.width = "50px"; // css for rocket
 rocket.style.position = "absolute";
-rocket.style.top = "530px";
+rocket.style.bottom = "10px";
 
 const containerWidth = gameContainer.clientWidth; // finding game container width
 
